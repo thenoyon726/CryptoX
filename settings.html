@@ -1,0 +1,144 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Settings | CryptoX</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Geist:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<style>
+  body{background-color:#000;color:#e5e2e1;overflow-x:hidden;}
+  .glass-panel{background:rgba(26,26,26,0.4);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);}
+  .inner-glow{box-shadow:inset 0 0 20px rgba(255,92,0,0.05);}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+  .custom-toggle:checked+.toggle-slider{background-color:#ff5c00;}
+  .custom-toggle:checked+.toggle-slider::before{transform:translateX(1.25rem);}
+</style>
+<script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-container":"#feb700","primary":"#ffb59a","surface-container-lowest":"#0e0e0e","on-surface-variant":"#e4beb1","background":"#131313","secondary":"#ffdb9d","primary-container":"#ff5c00","error":"#ffb4ab","surface-container":"#201f1f","outline":"#ab897d","surface-container-low":"#1c1b1b","on-surface":"#e5e2e1","on-primary-container":"#521800","surface-container-high":"#2a2a2a","outline-variant":"#5b4137","surface-variant":"#353534","on-primary":"#5a1b00"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"12px",full:"9999px"},spacing:{"margin-mobile":"20px","stack-md":"16px","gutter":"24px","margin-desktop":"80px","stack-sm":"8px","stack-lg":"32px"},fontFamily:{"label-mono":["Geist"],"headline-lg":["Hanken Grotesk"],"title-md":["Hanken Grotesk"],"body-md":["Inter"]},fontSize:{"label-mono":["14px",{lineHeight:"20px",letterSpacing:"0.05em",fontWeight:"500"}],"headline-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}],"title-md":["24px",{lineHeight:"32px",fontWeight:"500"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}]}}}}</script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden selection:bg-primary/30">
+<div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+<div id="sidebar-placeholder"></div>
+<main class="md:ml-64 p-margin-mobile md:p-margin-desktop min-h-screen pb-20 md:pb-0">
+<header class="mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg mb-2">Platform Settings</h2>
+<p class="text-on-surface-variant font-body-md max-w-2xl">Configure security, notifications, and display preferences.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="lg:col-span-12 flex items-center gap-stack-md overflow-x-auto pb-4 border-b border-outline-variant/10 mb-stack-md">
+<button class="tab-btn active px-6 py-2 rounded-full glass-panel text-primary font-label-mono border-primary/50 whitespace-nowrap" onclick="switchTab('security')">Security</button>
+<button class="tab-btn px-6 py-2 rounded-full glass-panel text-on-surface-variant font-label-mono hover:text-primary transition-colors whitespace-nowrap" onclick="switchTab('notifications')">Notifications</button>
+<button class="tab-btn px-6 py-2 rounded-full glass-panel text-on-surface-variant font-label-mono hover:text-primary transition-colors whitespace-nowrap" onclick="switchTab('privacy')">Privacy</button>
+<button class="tab-btn px-6 py-2 rounded-full glass-panel text-on-surface-variant font-label-mono hover:text-primary transition-colors whitespace-nowrap" onclick="switchTab('display')">Display</button>
+</div>
+<div class="lg:col-span-12 grid grid-cols-1 lg:grid-cols-12 gap-gutter" id="settings-content">
+<!-- SECURITY TAB -->
+<div class="contents" id="security-tab">
+<div class="lg:col-span-7 glass-panel rounded-xl p-stack-lg inner-glow">
+<div class="flex items-center gap-stack-md mb-stack-lg"><span class="material-symbols-outlined text-primary text-3xl">verified_user</span><h3 class="font-title-md text-title-md">Multi-Factor Authentication</h3></div>
+<p class="text-on-surface-variant mb-stack-lg">Add an extra layer of security to your account.</p>
+<div class="space-y-stack-md">
+<div class="flex justify-between items-center p-4 rounded-lg bg-surface-container-high/50 border border-outline-variant/10">
+<div class="flex gap-4 items-center"><span class="material-symbols-outlined text-on-surface-variant">smartphone</span><div><p class="font-label-mono text-on-surface">Authenticator App</p><p class="text-sm text-on-surface-variant">Google or Microsoft Authenticator</p></div></div>
+<button class="bg-primary px-6 py-2 rounded-lg text-on-primary font-bold hover:brightness-110 transition-all active:scale-95">Enable</button>
+</div>
+<div class="flex justify-between items-center p-4 rounded-lg bg-surface-container-high/50 border border-outline-variant/10">
+<div class="flex gap-4 items-center"><span class="material-symbols-outlined text-on-surface-variant">mail</span><div><p class="font-label-mono text-on-surface">Email OTP</p><p class="text-sm text-on-surface-variant">Receive codes via registered email</p></div></div>
+<div class="flex items-center gap-2"><span class="text-primary text-sm font-label-mono uppercase tracking-widest">Active</span><span class="material-symbols-outlined text-secondary-container">check_circle</span></div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 glass-panel rounded-xl p-stack-lg flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-stack-md mb-stack-lg"><span class="material-symbols-outlined text-primary text-3xl">lock_reset</span><h3 class="font-title-md text-title-md">Update Password</h3></div>
+<div class="space-y-stack-md">
+<div class="space-y-1"><label class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant">Current Password</label><input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary outline-none transition-all text-on-surface" placeholder="••••••••" type="password"></div>
+<div class="space-y-1"><label class="font-label-mono text-xs uppercase tracking-widest text-on-surface-variant">New Password</label><input class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-4 py-3 focus:border-primary outline-none transition-all text-on-surface" placeholder="••••••••" type="password"></div>
+</div>
+</div>
+<button class="w-full mt-6 bg-transparent border border-primary text-primary px-6 py-3 rounded-lg font-bold hover:bg-primary/10 transition-all active:scale-95">Update Security Credentials</button>
+</div>
+</div>
+<!-- NOTIFICATIONS TAB -->
+<div class="contents hidden" id="notifications-tab">
+<div class="lg:col-span-12 glass-panel rounded-xl p-stack-lg">
+<h3 class="font-title-md text-title-md mb-stack-lg">Notification Preferences</h3>
+<div class="space-y-gutter">
+<div><p class="font-label-mono text-xs text-primary mb-4 border-b border-primary/20 pb-2">TRADING & MARKET ALERTS</p>
+<div class="space-y-4">
+<div class="flex justify-between items-center"><div><h4 class="font-bold">Price Movements</h4><p class="text-sm text-on-surface-variant">Notify when assets move more than 5%</p></div>
+<div class="flex gap-4">
+<label class="flex items-center gap-2 cursor-pointer"><span class="text-xs font-label-mono">Push</span><div class="relative inline-block w-10 h-5"><input checked class="opacity-0 w-0 h-0 peer custom-toggle" type="checkbox"><span class="toggle-slider absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-surface-variant rounded-full transition-all duration-300 before:absolute before:content-[''] before:h-4 before:w-4 before:left-0.5 before:bottom-0.5 before:bg-white before:transition-all before:duration-300 before:rounded-full"></span></div></label>
+<label class="flex items-center gap-2 cursor-pointer"><span class="text-xs font-label-mono">Email</span><div class="relative inline-block w-10 h-5"><input class="opacity-0 w-0 h-0 peer custom-toggle" type="checkbox"><span class="toggle-slider absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-surface-variant rounded-full transition-all duration-300 before:absolute before:content-[''] before:h-4 before:w-4 before:left-0.5 before:bottom-0.5 before:bg-white before:transition-all before:duration-300 before:rounded-full"></span></div></label>
+</div></div>
+<div class="flex justify-between items-center"><div><h4 class="font-bold">Execution Reports</h4><p class="text-sm text-on-surface-variant">Summary of all trades executed</p></div>
+<div class="flex gap-4">
+<label class="flex items-center gap-2 cursor-pointer"><span class="text-xs font-label-mono">Push</span><div class="relative inline-block w-10 h-5"><input checked class="opacity-0 w-0 h-0 peer custom-toggle" type="checkbox"><span class="toggle-slider absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-surface-variant rounded-full transition-all duration-300 before:absolute before:content-[''] before:h-4 before:w-4 before:left-0.5 before:bottom-0.5 before:bg-white before:transition-all before:duration-300 before:rounded-full"></span></div></label>
+<label class="flex items-center gap-2 cursor-pointer"><span class="text-xs font-label-mono">SMS</span><div class="relative inline-block w-10 h-5"><input class="opacity-0 w-0 h-0 peer custom-toggle" type="checkbox"><span class="toggle-slider absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-surface-variant rounded-full transition-all duration-300 before:absolute before:content-[''] before:h-4 before:w-4 before:left-0.5 before:bottom-0.5 before:bg-white before:transition-all before:duration-300 before:rounded-full"></span></div></label>
+</div></div>
+</div></div>
+</div>
+</div>
+</div>
+<!-- DISPLAY TAB -->
+<div class="contents hidden" id="display-tab">
+<div class="lg:col-span-8 glass-panel rounded-xl p-stack-lg">
+<h3 class="font-title-md text-title-md mb-stack-lg">Interface Customization</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+<div class="space-y-stack-md">
+<p class="font-label-mono text-xs text-on-surface-variant uppercase">Visual Theme</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-xl border-2 border-primary bg-background flex flex-col items-center gap-2 cursor-pointer"><div class="w-full h-12 rounded bg-surface-container-high relative overflow-hidden"><div class="absolute top-2 left-2 w-4 h-4 rounded-full bg-primary shadow-[0_0_10px_rgba(255,92,0,0.5)]"></div></div><span class="text-xs font-bold text-primary"><svg width="26" height="26" viewBox="0 0 90 90" style="display:inline-block;vertical-align:middle;margin-right:7px;flex-shrink:0;"><polygon points="45,4 86,45 45,86 4,45" fill="#ff5c00"/><polygon points="45,14 76,45 45,76 14,45" fill="#c44a00"/><polygon points="45,26 64,45 45,64 26,45" fill="#000"/><line x1="33" y1="33" x2="57" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/><line x1="57" y1="33" x2="33" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/></svg>CryptoX</span></div>
+<div class="p-4 rounded-xl border border-outline-variant/30 bg-white/5 flex flex-col items-center gap-2 cursor-pointer opacity-60"><div class="w-full h-12 rounded bg-white relative overflow-hidden"><div class="absolute top-2 left-2 w-4 h-4 rounded-full bg-blue-500"></div></div><span class="text-xs font-bold text-on-surface-variant">Prism Light</span></div>
+</div>
+</div>
+<div class="space-y-stack-md">
+<p class="font-label-mono text-xs text-on-surface-variant uppercase">Chart Glow Intensity</p>
+<input class="w-full h-1 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary" max="100" min="0" type="range" value="75">
+<div class="flex justify-between text-[10px] font-label-mono text-on-surface-variant"><span>MINIMAL</span><span>DEFAULT</span><span>CINEMATIC</span></div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 glass-panel rounded-xl p-stack-lg bg-primary-container/5">
+<h4 class="font-bold mb-2">Live Preview</h4>
+<p class="text-sm text-on-surface-variant">Experience real-time visual updates as you adjust parameters.</p>
+</div>
+</div>
+<!-- PRIVACY TAB -->
+<div class="contents hidden" id="privacy-tab">
+<div class="lg:col-span-12 glass-panel rounded-xl p-stack-lg">
+<h3 class="font-title-md text-title-md mb-stack-lg">Privacy Settings</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center p-4 rounded-lg bg-surface-container-high/50 border border-outline-variant/10">
+<div><p class="font-label-mono text-on-surface">Hide Portfolio Balance</p><p class="text-sm text-on-surface-variant">Mask balance values on dashboard</p></div>
+<label class="flex items-center gap-2 cursor-pointer"><div class="relative inline-block w-10 h-5"><input class="opacity-0 w-0 h-0 peer custom-toggle" type="checkbox"><span class="toggle-slider absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-surface-variant rounded-full transition-all duration-300 before:absolute before:content-[''] before:h-4 before:w-4 before:left-0.5 before:bottom-0.5 before:bg-white before:transition-all before:duration-300 before:rounded-full"></span></div></label>
+</div>
+<div class="flex justify-between items-center p-4 rounded-lg bg-surface-container-high/50 border border-outline-variant/10">
+<div><p class="font-label-mono text-on-surface">Analytics Opt-Out</p><p class="text-sm text-on-surface-variant">Disable anonymous usage data collection</p></div>
+<label class="flex items-center gap-2 cursor-pointer"><div class="relative inline-block w-10 h-5"><input checked class="opacity-0 w-0 h-0 peer custom-toggle" type="checkbox"><span class="toggle-slider absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-surface-variant rounded-full transition-all duration-300 before:absolute before:content-[''] before:h-4 before:w-4 before:left-0.5 before:bottom-0.5 before:bg-white before:transition-all before:duration-300 before:rounded-full"></span></div></label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="mt-stack-lg flex flex-col md:flex-row justify-between items-center p-6 glass-panel rounded-xl gap-4">
+<div class="flex items-center gap-4"><span class="material-symbols-outlined text-secondary-container">sync</span><p class="text-sm text-on-surface-variant">Settings auto-synced across 4 devices (Last: 2m ago)</p></div>
+<div class="flex gap-stack-md w-full md:w-auto">
+<button class="flex-1 md:flex-none px-8 py-3 rounded-lg font-bold text-on-surface-variant hover:text-on-surface transition-colors">Discard</button>
+<button class="flex-1 md:flex-none px-8 py-3 rounded-lg font-bold bg-primary text-on-primary shadow-[0_4px_20px_rgba(255,92,0,0.4)] active:scale-95 transition-all">Save Changes</button>
+</div>
+</footer>
+</main>
+<script src="_sidebar.js"></script>
+<script>
+document.getElementById('sidebar-placeholder').innerHTML=SIDEBAR('settings');
+function switchTab(tabId){
+  ['security','notifications','privacy','display'].forEach(t=>{document.getElementById(t+'-tab').classList.add('hidden');});
+  document.getElementById(tabId+'-tab').classList.remove('hidden');
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.classList.remove('active','text-primary','border-primary/50');
+    btn.classList.add('text-on-surface-variant');
+    if(btn.innerText.toLowerCase()===tabId){btn.classList.add('active','text-primary','border-primary/50');btn.classList.remove('text-on-surface-variant');}
+  });
+}
+</script>
+</body></html>

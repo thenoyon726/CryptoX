@@ -1,0 +1,118 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Profile | CryptoX</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Geist:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<style>
+  body{background-color:#000;color:#e5e2e1;overflow-x:hidden;}
+  .glass-panel{background:rgba(26,26,26,0.4);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);}
+  .amber-glow{background:radial-gradient(circle at center,rgba(255,92,0,0.05) 0%,transparent 70%);}
+  .recessed-input{background:#0e0e0e;box-shadow:inset 0 2px 4px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.05);transition:border-color 0.3s ease;}
+  .recessed-input:focus{border-color:#ff5c00;outline:none;}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+</style>
+<script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-container":"#feb700","primary":"#ffb59a","surface-container-lowest":"#0e0e0e","on-surface-variant":"#e4beb1","background":"#131313","secondary":"#ffdb9d","primary-container":"#ff5c00","error":"#ffb4ab","surface-container":"#201f1f","outline":"#ab897d","surface-container-low":"#1c1b1b","on-surface":"#e5e2e1","on-primary-container":"#521800","surface-container-high":"#2a2a2a","outline-variant":"#5b4137","on-primary":"#5a1b00"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"12px",full:"9999px"},spacing:{"margin-mobile":"20px","stack-md":"16px","gutter":"24px","margin-desktop":"80px","stack-sm":"8px","stack-lg":"32px"},fontFamily:{"label-mono":["Geist"],"headline-lg":["Hanken Grotesk"],"title-md":["Hanken Grotesk"],"body-md":["Inter"],"data-display":["Geist"]},fontSize:{"label-mono":["14px",{lineHeight:"20px",letterSpacing:"0.05em",fontWeight:"500"}],"headline-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}],"title-md":["24px",{lineHeight:"32px",fontWeight:"500"}],"data-display":["20px",{lineHeight:"24px",fontWeight:"600"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}]}}}}</script>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden bg-background text-on-background">
+<div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] amber-glow pointer-events-none z-0"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] amber-glow pointer-events-none z-0"></div>
+<div id="sidebar-placeholder"></div>
+<main class="md:ml-64 p-margin-mobile md:p-margin-desktop relative z-10 pb-20 md:pb-0">
+<section class="glass-panel rounded-xl p-stack-lg mb-gutter relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 amber-glow opacity-30 -mr-20 -mt-20"></div>
+<div class="flex flex-col md:flex-row items-center gap-stack-lg relative z-10">
+<div class="relative group">
+<div class="w-32 h-32 rounded-full border-2 border-primary/40 bg-primary-container/20 flex items-center justify-center text-4xl font-bold text-primary">AV</div>
+<div class="absolute bottom-0 right-0 bg-primary rounded-full p-2 flex items-center justify-center cursor-pointer hover:scale-110 transition-transform shadow-lg">
+<span class="material-symbols-outlined text-on-primary text-sm" style="font-variation-settings:'FILL' 1;">edit</span>
+</div>
+</div>
+<div class="flex-1 text-center md:text-left">
+<div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Alexander Vance</h2>
+<span class="bg-secondary-container/20 text-secondary-container px-3 py-1 rounded-full text-[12px] font-label-mono border border-secondary-container/30">PRO STATUS</span>
+</div>
+<p class="font-body-md text-on-surface-variant opacity-70 mb-4">Trader Alpha • ID: 884-291-00X</p>
+<div class="flex flex-wrap justify-center md:justify-start gap-gutter">
+<div class="flex flex-col"><span class="font-label-mono text-[10px] text-primary/60 uppercase">Member Since</span><span class="font-data-display text-data-display">OCT 2022</span></div>
+<div class="flex flex-col"><span class="font-label-mono text-[10px] text-primary/60 uppercase">Tier Ranking</span><span class="font-data-display text-data-display text-secondary">TOP 1%</span></div>
+<div class="flex flex-col"><span class="font-label-mono text-[10px] text-primary/60 uppercase">Total Volume</span><span class="font-data-display text-data-display">$2.4M</span></div>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<button class="px-gutter py-stack-md bg-primary-container text-on-primary-container font-label-mono rounded-lg hover:shadow-[0_0_20px_rgba(255,92,0,0.3)] transition-all">Edit Profile</button>
+<button class="px-gutter py-stack-md border border-outline text-on-surface font-label-mono rounded-lg hover:bg-white/5 transition-all">Download Report</button>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-12 gap-gutter">
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<section class="glass-panel rounded-xl p-stack-lg">
+<div class="flex items-center justify-between mb-stack-lg border-b border-outline-variant/10 pb-4">
+<h3 class="font-title-md text-title-md text-on-surface">Personal Information</h3>
+<a href="settings.html" class="text-primary font-label-mono hover:underline flex items-center gap-1 text-sm"><span class="material-symbols-outlined text-sm">lock_reset</span> Security Check</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-lg">
+<div class="flex flex-col gap-2"><label class="font-label-mono text-[12px] text-on-surface-variant/70">Full Name</label><input class="recessed-input px-4 py-3 rounded-lg text-on-surface font-body-md w-full" type="text" value="Alexander Vance"></div>
+<div class="flex flex-col gap-2"><label class="font-label-mono text-[12px] text-on-surface-variant/70">Email Address</label><div class="relative"><input class="recessed-input px-4 py-3 rounded-lg text-on-surface font-body-md w-full" type="email" value="a.vance@cryptox.com"><span class="absolute right-3 top-1/2 -translate-y-1/2 text-secondary material-symbols-outlined" style="font-variation-settings:'FILL' 1;">verified</span></div></div>
+<div class="flex flex-col gap-2"><label class="font-label-mono text-[12px] text-on-surface-variant/70">Phone Number</label><input class="recessed-input px-4 py-3 rounded-lg text-on-surface font-body-md w-full" type="tel" value="+1 (555) 012-3456"></div>
+<div class="flex flex-col gap-2"><label class="font-label-mono text-[12px] text-on-surface-variant/70">Timezone</label><select class="recessed-input px-4 py-3 rounded-lg text-on-surface font-body-md w-full appearance-none"><option>GMT-5 (New York)</option><option>GMT+0 (London)</option><option>GMT+8 (Singapore)</option></select></div>
+<div class="col-span-full pt-4 flex justify-end"><button class="bg-primary/10 text-primary border border-primary/20 px-gutter py-stack-md rounded-lg font-label-mono hover:bg-primary/20 transition-all" type="button">Save Changes</button></div>
+</div>
+</section>
+<section class="glass-panel rounded-xl p-stack-lg">
+<div class="flex items-center justify-between mb-stack-lg">
+<h3 class="font-title-md text-title-md text-on-surface">Account Verification</h3>
+<span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-[12px] font-label-mono">KYC Level 2</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<div class="border border-outline-variant/20 rounded-xl p-4 flex flex-col items-center text-center bg-white/5"><div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center mb-3"><span class="material-symbols-outlined text-secondary" style="font-variation-settings:'FILL' 1;">badge</span></div><h4 class="font-label-mono text-on-surface mb-1">Identity Verified</h4><p class="text-[12px] text-on-surface-variant opacity-60">Passport verified on 12/01/24</p></div>
+<div class="border border-outline-variant/20 rounded-xl p-4 flex flex-col items-center text-center bg-white/5"><div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center mb-3"><span class="material-symbols-outlined text-secondary" style="font-variation-settings:'FILL' 1;">location_on</span></div><h4 class="font-label-mono text-on-surface mb-1">Residence Proof</h4><p class="text-[12px] text-on-surface-variant opacity-60">Utility bill approved</p></div>
+<div class="border border-dashed border-primary/40 rounded-xl p-4 flex flex-col items-center text-center hover:bg-primary/5 transition-all cursor-pointer group"><div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform"><span class="material-symbols-outlined text-primary">security_update_good</span></div><h4 class="font-label-mono text-primary mb-1">Tier 3 (Institutional)</h4><p class="text-[12px] text-on-surface-variant opacity-60">Requires asset declaration</p></div>
+</div>
+</section>
+</div>
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<section class="glass-panel rounded-xl p-stack-lg">
+<div class="flex items-center justify-between mb-stack-lg"><h3 class="font-title-md text-title-md text-on-surface">Connected</h3><button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">add_link</button></div>
+<div class="space-y-stack-md">
+<div class="flex items-center gap-4 p-4 rounded-xl border border-outline-variant/10 bg-surface-container-low hover:border-primary/30 transition-all cursor-pointer"><div class="w-10 h-10 flex items-center justify-center bg-[#1E1E1E] rounded-lg border border-white/5"><span class="material-symbols-outlined text-on-surface-variant">account_balance</span></div><div class="flex-1"><p class="font-label-mono text-[14px] text-on-surface">Citibank NA</p><p class="text-[12px] text-on-surface-variant opacity-60">Checking •••• 4902</p></div><span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings:'FILL' 1;">check_circle</span></div>
+<div class="flex items-center gap-4 p-4 rounded-xl border border-outline-variant/10 bg-surface-container-low hover:border-primary/30 transition-all cursor-pointer"><div class="w-10 h-10 flex items-center justify-center bg-[#1E1E1E] rounded-lg border border-white/5"><span class="material-symbols-outlined text-primary">account_balance_wallet</span></div><div class="flex-1"><p class="font-label-mono text-[14px] text-on-surface">Ledger Nano X</p><p class="text-[12px] text-on-surface-variant opacity-60">0x71C...3921</p></div><span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings:'FILL' 1;">check_circle</span></div>
+<div class="flex items-center gap-4 p-4 rounded-xl border border-outline-variant/10 bg-surface-container-low hover:border-primary/30 transition-all cursor-pointer"><div class="w-10 h-10 flex items-center justify-center bg-[#1E1E1E] rounded-lg border border-white/5"><span class="material-symbols-outlined text-on-surface-variant">monitoring</span></div><div class="flex-1"><p class="font-label-mono text-[14px] text-on-surface">MetaMask</p><p class="text-[12px] text-on-surface-variant opacity-60">0x12A...91B2</p></div><span class="material-symbols-outlined text-error text-sm">error</span></div>
+</div>
+</section>
+<section class="glass-panel rounded-xl p-stack-lg relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+<h3 class="font-title-md text-title-md text-on-surface mb-stack-md relative z-10">Trading Activity</h3>
+<div class="relative h-24 mb-stack-md z-10">
+<svg class="w-full h-full" viewBox="0 0 400 100"><defs><linearGradient id="ag" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ffb59a"/><stop offset="100%" stop-color="transparent"/></linearGradient></defs><path d="M0 80 Q 50 20, 100 60 T 200 10 T 300 90 T 400 30" fill="none" stroke="#ffb59a" stroke-linecap="round" stroke-width="3"/><path d="M0 80 Q 50 20, 100 60 T 200 10 T 300 90 T 400 30 V 100 H 0 Z" fill="url(#ag)" opacity="0.1"/></svg>
+</div>
+<div class="flex justify-between relative z-10"><div><p class="text-[10px] font-label-mono uppercase text-on-surface-variant">Win Rate</p><p class="font-data-display text-data-display text-secondary">68.4%</p></div><div class="text-right"><p class="text-[10px] font-label-mono uppercase text-on-surface-variant">Trade Count</p><p class="font-data-display text-data-display">1,204</p></div></div>
+</section>
+</div>
+</div>
+
+<footer class="relative z-10 mt-8 mb-20 md:mb-0" style="border-top:1px solid rgba(255,255,255,0.05);padding:20px 24px 0;margin:32px 0 0;">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-bottom:16px;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <svg width="22" height="22" viewBox="0 0 90 90" style="flex-shrink:0;display:inline-block;"><polygon points="45,4 86,45 45,86 4,45" fill="#ff5c00"/><polygon points="45,14 76,45 45,76 14,45" fill="#c44a00"/><polygon points="45,26 64,45 45,64 26,45" fill="#000"/><line x1="33" y1="33" x2="57" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/><line x1="57" y1="33" x2="33" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/></svg>
+      <span style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:800;color:#ffb59a;letter-spacing:-0.03em;">CryptoX</span>
+      <span style="font-size:11px;color:rgba(228,190,177,0.3);font-family:'Geist',monospace;">© 2025 All Rights Reserved.</span>
+    </div>
+    <div style="display:flex;gap:16px;">
+      <a href="#" style="font-size:11px;color:rgba(228,190,177,0.4);text-decoration:none;font-family:'Geist',monospace;">Privacy</a>
+      <a href="#" style="font-size:11px;color:rgba(228,190,177,0.4);text-decoration:none;font-family:'Geist',monospace;">Terms</a>
+      <a href="#" style="font-size:11px;color:rgba(228,190,177,0.4);text-decoration:none;font-family:'Geist',monospace;">Security</a>
+    </div>
+  </div>
+</footer>
+</main>
+<script src="_sidebar.js"></script>
+<script>
+document.getElementById('sidebar-placeholder').innerHTML=SIDEBAR('profile');
+document.querySelectorAll('.recessed-input').forEach(input=>{
+  const label=input.closest('.flex')?.querySelector('label');
+  if(label){input.addEventListener('focus',()=>label.style.color='#ffb59a');input.addEventListener('blur',()=>label.style.color='');}
+});
+</script>
+</body></html>

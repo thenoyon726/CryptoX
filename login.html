@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In | CryptoX</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Geist:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  body{background-color:#000;color:#e5e2e1;overflow-x:hidden;}
+  .glass-panel{background:rgba(26,26,26,0.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);}
+  .glass-modal{background:rgba(38,38,38,0.7);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,0.12);}
+  .glow-amber{box-shadow:0 0 30px -5px rgba(255,92,0,0.4);}
+  .input-field{background:#0e0e0e;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;transition:border-color 0.3s;}
+  .input-field:focus{border-color:#ff5c00;outline:none;box-shadow:0 0 0 2px rgba(255,92,0,0.15);}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+</style>
+<script id="tailwind-config">
+  tailwind.config={darkMode:"class",theme:{extend:{colors:{"primary":"#ffb59a","primary-container":"#ff5c00","on-primary-container":"#521800","background":"#131313","surface-container":"#201f1f","surface-container-low":"#1c1b1b","surface-container-lowest":"#0e0e0e","on-surface":"#e5e2e1","on-surface-variant":"#e4beb1","outline-variant":"#5b4137","secondary":"#ffdb9d","error":"#ffb4ab","on-primary":"#5a1b00"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"12px",full:"9999px"},fontFamily:{"label-mono":["Geist"],"headline-lg":["Hanken Grotesk"],"body-md":["Inter"],"title-md":["Hanken Grotesk"],"headline-lg-mobile":["Hanken Grotesk"]},fontSize:{"label-mono":["14px",{lineHeight:"20px",letterSpacing:"0.05em",fontWeight:"500"}],"headline-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}],"headline-lg-mobile":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}]}}}}
+</script>
+</head>
+<body class="dark min-h-screen flex items-center justify-center relative">
+  <!-- Background glows -->
+  <div class="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+    <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-primary-container/5 rounded-full blur-[120px]"></div>
+    <div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px]"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-md px-6 py-12 pb-28">
+    <!-- Logo -->
+    <div class="text-center mb-10">
+      <a href="index.html" class="inline-block">
+        <h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary tracking-tighter" style="display:inline-flex;align-items:center;"><svg width="30" height="30" viewBox="0 0 90 90" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0;"><polygon points="45,4 86,45 45,86 4,45" fill="#ff5c00"/><polygon points="45,14 76,45 45,76 14,45" fill="#c44a00"/><polygon points="45,26 64,45 45,64 26,45" fill="#000"/><line x1="33" y1="33" x2="57" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/><line x1="57" y1="33" x2="33" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/></svg>CryptoX</h1>
+      </a>
+      <p class="text-on-surface-variant text-sm mt-1 font-label-mono uppercase tracking-widest">Institutional Grade</p>
+    </div>
+
+    <div class="glass-modal rounded-2xl p-8">
+      <h2 class="text-2xl font-bold text-on-surface mb-1">Welcome back</h2>
+      <p class="text-on-surface-variant text-sm mb-8">Sign in to your CryptoX account</p>
+
+      <!-- Google OAuth -->
+      <button onclick="window.location.href='splash.html'" class="w-full flex items-center justify-center gap-3 glass-panel py-3 rounded-xl border border-white/10 hover:bg-white/5 transition-all mb-6 font-label-mono text-sm">
+        <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332C2.438 15.983 5.482 18 9 18z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.958L3.964 6.29C4.672 4.163 6.656 3.58 9 3.58z"/></svg>
+        Continue with Google
+      </button>
+
+      <div class="flex items-center gap-4 mb-6">
+        <div class="flex-1 h-px bg-outline-variant/20"></div>
+        <span class="text-on-surface-variant text-xs font-label-mono">OR</span>
+        <div class="flex-1 h-px bg-outline-variant/20"></div>
+      </div>
+
+      <!-- Form -->
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-label-mono text-on-surface-variant uppercase tracking-wider mb-2">Email Address</label>
+          <input type="email" placeholder="you@example.com" class="input-field w-full px-4 py-3 rounded-xl font-body-md"/>
+        </div>
+        <div>
+          <label class="block text-xs font-label-mono text-on-surface-variant uppercase tracking-wider mb-2">Password</label>
+          <div class="relative">
+            <input type="password" id="password" placeholder="••••••••" class="input-field w-full px-4 py-3 rounded-xl font-body-md pr-12"/>
+            <button onclick="togglePass('password','eyeIcon')" class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-sm" id="eyeIcon">visibility</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex justify-end">
+          <a href="forgot-password.html" class="text-primary text-xs font-label-mono hover:underline">Forgot password?</a>
+        </div>
+        <button onclick="window.location.href='splash.html'" class="w-full bg-primary-container text-on-primary-container py-3 rounded-xl font-bold text-base hover:scale-[1.02] active:scale-95 transition-all glow-amber">
+          Sign In
+        </button>
+      </div>
+
+      <p class="text-center text-sm text-on-surface-variant mt-6">
+        Don't have an account? <a href="signup.html" class="text-primary font-bold hover:underline">Create Account</a>
+      </p>
+    </div>
+
+    <p class="text-center text-xs text-on-surface-variant/40 mt-6 font-label-mono">
+      By signing in, you agree to our <a href="#" class="hover:text-primary transition-colors">Terms of Service</a> and <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+    </p>
+  </div>
+
+<script>
+  function togglePass(id, iconId){
+    const i=document.getElementById(id);
+    const ic=document.getElementById(iconId);
+    if(i.type==='password'){i.type='text';ic.textContent='visibility_off';}
+    else{i.type='password';ic.textContent='visibility';}
+  }
+</script>
+
+<!-- Mobile Bottom Nav -->
+<div class="fixed bottom-0 left-0 right-0 md:hidden z-50" style="background:rgba(13,13,13,0.97);backdrop-filter:blur(24px);border-top:1px solid rgba(255,255,255,0.07);padding:8px 0 14px;">
+  <div style="display:flex;justify-content:space-around;align-items:center;">
+    <a href="index.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;">
+      <span class="material-symbols-outlined" style="font-size:22px;color:rgba(228,190,177,0.45);">home</span>
+      <span style="font-family:'Geist',monospace;font-size:9px;color:rgba(228,190,177,0.45);">Home</span>
+    </a>
+    <a href="login.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;">
+      <span class="material-symbols-outlined" style="font-size:22px;color:#ff5c00;font-variation-settings:'FILL' 1;">login</span>
+      <span style="font-family:'Geist',monospace;font-size:9px;color:#ff5c00;">Sign In</span>
+    </a>
+    <a href="signup.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;">
+      <div style="width:46px;height:46px;border-radius:50%;background:#ff5c00;display:flex;align-items:center;justify-content:center;margin-top:-20px;box-shadow:0 0 20px rgba(255,92,0,0.5);">
+        <span class="material-symbols-outlined" style="font-size:22px;color:#fff;">person_add</span>
+      </div>
+      <span style="font-family:'Geist',monospace;font-size:9px;color:rgba(228,190,177,0.45);">Register</span>
+    </a>
+    <a href="#" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;">
+      <span class="material-symbols-outlined" style="font-size:22px;color:rgba(228,190,177,0.45);">help</span>
+      <span style="font-family:'Geist',monospace;font-size:9px;color:rgba(228,190,177,0.45);">Help</span>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

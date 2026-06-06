@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CryptoX | Professional Crypto Investment Platform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  .glass-panel{background:rgba(26,26,26,0.4);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);}
+  .glass-modal{background:rgba(38,38,38,0.6);backdrop-filter:blur(40px);-webkit-backdrop-filter:blur(40px);border:1px solid rgba(255,255,255,0.15);}
+  .glow-amber{box-shadow:0 0 30px -5px rgba(255,92,0,0.4);}
+  .text-glow{text-shadow:0 0 15px rgba(255,181,154,0.3);}
+  .hero-gradient{background:radial-gradient(circle at 50% 30%,rgba(255,92,0,0.15) 0%,rgba(0,0,0,1) 70%);}
+  .chart-glow{filter:drop-shadow(0 0 8px rgba(255,92,0,0.5));}
+  body{background-color:#000000;color:#e5e2e1;overflow-x:hidden;}
+  .animate-float{animation:float 6s ease-in-out infinite;}
+  @keyframes float{0%{transform:translateY(0px);}50%{transform:translateY(-20px);}100%{transform:translateY(0px);}}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+</style>
+<script id="tailwind-config">
+  tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-container":"#feb700","primary":"#ffb59a","surface-container-lowest":"#0e0e0e","on-surface-variant":"#e4beb1","background":"#131313","secondary":"#ffdb9d","primary-container":"#ff5c00","error":"#ffb4ab","surface-container":"#201f1f","outline":"#ab897d","surface-container-low":"#1c1b1b","surface-bright":"#3a3939","on-surface":"#e5e2e1","on-background":"#e5e2e1","on-primary-container":"#521800","surface-container-high":"#2a2a2a","outline-variant":"#5b4137","surface-variant":"#353534","error-container":"#93000a","on-primary":"#5a1b00","on-secondary":"#412d00","on-tertiary":"#313030","tertiary":"#c8c6c5","inverse-surface":"#e5e2e1"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"12px",full:"9999px"},spacing:{"margin-mobile":"20px","stack-md":"16px","gutter":"24px","container-max":"1440px","unit":"4px","margin-desktop":"80px","stack-sm":"8px","stack-lg":"32px"},fontFamily:{"title-md":["Hanken Grotesk"],"headline-xl":["Hanken Grotesk"],"body-md":["Inter"],"headline-lg-mobile":["Hanken Grotesk"],"label-mono":["Geist"],"headline-lg":["Hanken Grotesk"],"data-display":["Geist"],"body-lg":["Inter"]},fontSize:{"title-md":["24px",{lineHeight:"32px",fontWeight:"500"}],"headline-xl":["64px",{lineHeight:"72px",letterSpacing:"-0.04em",fontWeight:"700"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-lg-mobile":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"label-mono":["14px",{lineHeight:"20px",letterSpacing:"0.05em",fontWeight:"500"}],"headline-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}],"data-display":["20px",{lineHeight:"24px",fontWeight:"600"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}]}}}}
+</script>
+</head>
+<body class="dark selection:bg-primary-container selection:text-white">
+
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-outline-variant/10 flex justify-between items-center px-6 md:px-margin-desktop py-4">
+  <div class="flex items-center gap-2">
+    <span style="display:inline-flex;align-items:center;"><svg width="26" height="26" viewBox="0 0 90 90" style="display:inline-block;vertical-align:middle;margin-right:7px;flex-shrink:0;"><polygon points="45,4 86,45 45,86 4,45" fill="#ff5c00"/><polygon points="45,14 76,45 45,76 14,45" fill="#c44a00"/><polygon points="45,26 64,45 45,64 26,45" fill="#000"/><line x1="33" y1="33" x2="57" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/><line x1="57" y1="33" x2="33" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/></svg><span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary tracking-tighter">CryptoX</span></span>
+  </div>
+  <nav class="hidden md:flex items-center gap-stack-lg">
+    <a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="index.html">Markets</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-body-md text-body-md" href="#">Learn</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-body-md text-body-md" href="#">About</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-body-md text-body-md" href="#">Support</a>
+  </nav>
+  <div class="flex items-center gap-4">
+    
+  <!-- Hamburger button (mobile only) -->
+  <button id="hamburger-btn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-lg glass-panel text-primary" onclick="toggleMobileMenu()">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
+
+    <a href="login.html" class="hidden sm:block text-on-surface font-body-md hover:text-primary transition-colors">Sign In</a>
+    <a href="signup.html" class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold hover:scale-105 transition-transform active:scale-95 glow-amber">Get Started</a>
+  </div>
+</header>
+
+<main class="pt-32 pb-24 md:pb-0">
+  <!-- Hero Section -->
+  <section class="hero-gradient min-h-[921px] flex flex-col items-center justify-center text-center px-margin-mobile relative overflow-hidden">
+    <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary/10 blur-[120px] rounded-full"></div>
+    <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary-container/10 blur-[120px] rounded-full"></div>
+    <div class="z-10 max-w-4xl mx-auto space-y-stack-lg">
+      <div class="inline-flex items-center gap-2 glass-panel px-4 py-1.5 rounded-full border border-primary/20 animate-pulse">
+        <span class="w-2 h-2 rounded-full bg-primary-container"></span>
+        <span class="font-label-mono text-label-mono text-primary uppercase tracking-widest">v2.0 Performance Engine Live</span>
+      </div>
+      <h1 class="font-headline-xl text-headline-xl md:text-[80px] leading-tight text-glow">
+        Step Into The Future Of <span class="text-primary italic">Crypto Trading</span>
+      </h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+        Institutional-grade infrastructure meets AI-optimized execution. Trade with the precision of a professional firm.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-gutter pt-stack-md">
+        <a href="signup.html" class="w-full sm:w-auto px-10 py-4 bg-primary-container text-on-primary-container rounded-full font-bold text-lg hover:scale-105 transition-transform glow-amber flex items-center justify-center gap-2">
+          Get Started <span class="material-symbols-outlined">trending_flat</span>
+        </a>
+        <button class="w-full sm:w-auto px-10 py-4 glass-panel text-on-surface rounded-full font-bold text-lg border border-white/10 hover:bg-white/5 transition-colors">
+          View Markets
+        </button>
+      </div>
+    </div>
+    <div class="hidden lg:block absolute top-[45%] left-[10%] animate-float" style="animation-delay:1s">
+      <div class="glass-panel p-4 rounded-xl border-primary/20">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary">security</span>
+          <div class="text-left">
+            <p class="text-label-mono text-[10px] text-on-surface-variant uppercase">Security Grade</p>
+            <p class="font-data-display text-primary">MIL-SPEC</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hidden lg:block absolute top-[55%] right-[12%] animate-float">
+      <div class="glass-panel p-4 rounded-xl border-primary/20">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-primary">bolt</span>
+          <div class="text-left">
+            <p class="text-label-mono text-[10px] text-on-surface-variant uppercase">Execution Speed</p>
+            <p class="font-data-display text-primary">0.02ms</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Markets Bento Grid -->
+  <section class="px-6 md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+      <div>
+        <h2 class="font-headline-lg text-headline-lg">Market Hub</h2>
+        <p class="text-on-surface-variant font-body-md">Live performance of the world's most liquid assets.</p>
+      </div>
+      <button class="text-primary flex items-center gap-1 font-label-mono hover:gap-2 transition-all">
+        VIEW ALL ASSETS <span class="material-symbols-outlined text-sm">arrow_forward</span>
+      </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
+      <div class="md:col-span-2 lg:col-span-2 glass-panel p-stack-lg rounded-xl group relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div class="flex justify-between items-start mb-8 relative z-10">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">currency_bitcoin</span>
+            </div>
+            <div>
+              <h3 class="font-title-md text-title-md">Bitcoin</h3>
+              <p class="font-label-mono text-on-surface-variant">BTC/USDT</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="font-data-display text-title-md" id="btc-price">$64,281.00</p>
+            <p class="text-primary font-label-mono" id="btc-change">+2.45%</p>
+          </div>
+        </div>
+        <div class="h-40 w-full relative">
+          <svg class="w-full h-full chart-glow" viewBox="0 0 400 100">
+            <path d="M0 80 Q 50 20, 100 70 T 200 40 T 300 80 T 400 20" fill="none" stroke="#ff5c00" stroke-width="3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="glass-panel p-stack-lg rounded-xl flex flex-col justify-between">
+        <div class="flex justify-between items-center mb-6">
+          <span class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+            <span class="material-symbols-outlined text-secondary">currency_exchange</span>
+          </span>
+          <span class="bg-error-container/20 text-error px-2 py-0.5 rounded text-[10px] font-bold uppercase">High Vol</span>
+        </div>
+        <div>
+          <h3 class="font-title-md text-body-lg">Ethereum</h3>
+          <p class="font-label-mono text-on-surface-variant text-sm">ETH/USDT</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-white/5 flex justify-between items-end">
+          <p class="font-data-display text-lg">$3,421.20</p>
+          <svg width="64" height="32" viewBox="0 0 100 40"><path d="M0 30 L20 10 L40 25 L60 5 L80 15 L100 0" fill="none" stroke="#ffb4ab" stroke-width="2"/></svg>
+        </div>
+      </div>
+      <div class="glass-panel p-stack-lg rounded-xl flex flex-col justify-between">
+        <div class="flex justify-between items-center mb-6">
+          <span class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">
+            <span class="material-symbols-outlined text-primary">token</span>
+          </span>
+          <span class="bg-secondary-container/20 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase">Trending</span>
+        </div>
+        <div>
+          <h3 class="font-title-md text-body-lg">Solana</h3>
+          <p class="font-label-mono text-on-surface-variant text-sm">SOL/USDT</p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-white/5 flex justify-between items-end">
+          <p class="font-data-display text-lg">$142.55</p>
+          <svg width="64" height="32" viewBox="0 0 100 40"><path d="M0 40 L25 20 L50 30 L75 10 L100 5" fill="none" stroke="#ffb59a" stroke-width="2"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-stack-lg px-6 md:px-margin-desktop bg-surface-container-lowest/30">
+    <div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div class="space-y-stack-lg">
+        <h2 class="font-headline-lg text-headline-lg leading-tight">Institutional Power,<br/><span class="text-primary">Simplified for You.</span></h2>
+        <p class="font-body-lg text-body-lg text-on-surface-variant">We've distilled the complex tools of Wall Street into a sleek, high-performance interface.</p>
+        <div class="space-y-gutter">
+          <div class="flex gap-stack-md">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl glass-modal flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">psychology</span>
+            </div>
+            <div>
+              <h4 class="font-title-md text-lg font-bold">AI Portfolio Balancing</h4>
+              <p class="text-on-surface-variant text-sm">Our neural networks analyze 10,000+ data points per second to suggest optimal asset weighting.</p>
+            </div>
+          </div>
+          <div class="flex gap-stack-md">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl glass-modal flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">layers</span>
+            </div>
+            <div>
+              <h4 class="font-title-md text-lg font-bold">Deep Liquidity Aggregation</h4>
+              <p class="text-on-surface-variant text-sm">Zero slippage execution by pooling orders across 20+ top-tier exchanges simultaneously.</p>
+            </div>
+          </div>
+          <div class="flex gap-stack-md">
+            <div class="flex-shrink-0 w-12 h-12 rounded-xl glass-modal flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">lock_person</span>
+            </div>
+            <div>
+              <h4 class="font-title-md text-lg font-bold">Quantum-Grade Custody</h4>
+              <p class="text-on-surface-variant text-sm">Multi-signature cold storage with periodic security audits by world-leading firms.</p>
+            </div>
+          </div>
+        </div>
+        <a href="signup.html" class="inline-flex items-center gap-2 bg-primary-container text-on-primary-container px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform glow-amber">
+          Start Trading <span class="material-symbols-outlined">trending_flat</span>
+        </a>
+      </div>
+      <div class="relative group">
+        <div class="absolute -inset-4 bg-primary/20 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+        <div class="glass-modal p-stack-lg rounded-2xl relative border-white/5 overflow-hidden">
+          <div class="flex justify-between items-center mb-8">
+            <div class="flex gap-2">
+              <div class="w-3 h-3 rounded-full bg-error"></div>
+              <div class="w-3 h-3 rounded-full bg-secondary"></div>
+              <div class="w-3 h-3 rounded-full bg-primary-container"></div>
+            </div>
+            <span class="font-label-mono text-[10px] text-on-surface-variant">CRYPTOX_CORE_OS_V2</span>
+          </div>
+          <div class="space-y-stack-md">
+            <div class="grid grid-cols-2 gap-stack-md">
+              <div class="h-24 glass-panel rounded-lg flex flex-col justify-center items-center">
+                <span class="text-primary font-data-display text-2xl">98.4%</span>
+                <span class="text-[10px] font-label-mono text-on-surface-variant uppercase">Uptime</span>
+              </div>
+              <div class="h-24 glass-panel rounded-lg flex flex-col justify-center items-center">
+                <span class="text-secondary font-data-display text-2xl">4.2M</span>
+                <span class="text-[10px] font-label-mono text-on-surface-variant uppercase">TPS</span>
+              </div>
+            </div>
+            <div class="p-4 bg-primary-container/10 border border-primary-container/20 rounded-lg">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-xs font-bold text-primary">SYSTEM ALERT</span>
+                <span class="text-[10px] text-primary/60">JUST NOW</span>
+              </div>
+              <p class="text-xs text-on-surface leading-relaxed">Whale alert: 50,000 BTC moved. Market volatility expected +2%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-24 px-6 md:px-margin-desktop text-center">
+    <div class="max-w-3xl mx-auto space-y-stack-lg glass-panel p-12 rounded-3xl border-primary/10">
+      <h2 class="font-headline-lg text-headline-lg">Ready to Evolve?</h2>
+      <p class="font-body-lg text-on-surface-variant">Join over 120,000 traders globally who have made CryptoX their home for digital asset management.</p>
+      <a href="signup.html" class="inline-block bg-primary-container text-on-primary-container px-12 py-4 rounded-full font-bold text-xl glow-amber hover:scale-105 transition-all">
+        Create Your Free Account
+      </a>
+      <div class="pt-8 flex justify-center gap-12 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+        <div class="font-bold tracking-tighter text-2xl">COINBASE</div>
+        <div class="font-bold tracking-tighter text-2xl">BINANCE</div>
+        <div class="font-bold tracking-tighter text-2xl">KRAKEN</div>
+        <div class="font-bold tracking-tighter text-2xl">GEMINI</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="w-full py-stack-lg bg-surface-container-lowest border-t border-outline-variant/10">
+  <div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-margin-desktop gap-stack-md max-w-container-max mx-auto">
+    <div>
+      <span class="font-title-md text-title-md text-primary font-bold" style="display:inline-flex;align-items:center;"><svg width="26" height="26" viewBox="0 0 90 90" style="display:inline-block;vertical-align:middle;margin-right:7px;flex-shrink:0;"><polygon points="45,4 86,45 45,86 4,45" fill="#ff5c00"/><polygon points="45,14 76,45 45,76 14,45" fill="#c44a00"/><polygon points="45,26 64,45 45,64 26,45" fill="#000"/><line x1="33" y1="33" x2="57" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/><line x1="57" y1="33" x2="33" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/></svg>CryptoX</span>
+      <p class="text-on-surface-variant text-sm font-body-md mt-1">© 2025 CryptoX. All Rights Reserved.</p>
+    </div>
+    <div class="flex gap-gutter">
+      <a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-sm" href="#">Privacy Policy</a>
+      <a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-sm" href="#">Terms of Service</a>
+      <a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-sm" href="#">Risk Disclosure</a>
+      <a class="text-on-surface-variant hover:text-secondary transition-colors font-body-md text-sm" href="#">Security</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Live price simulation
+  function randomPrice(base,range){return(base+(Math.random()-0.5)*range).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  setInterval(()=>{
+    const p=document.getElementById('btc-price');
+    if(p) p.textContent='$'+randomPrice(64281,200);
+  },3000);
+  document.querySelectorAll('button').forEach(b=>{
+    b.addEventListener('mousedown',()=>b.classList.add('scale-95'));
+    b.addEventListener('mouseup',()=>b.classList.remove('scale-95'));
+    b.addEventListener('mouseleave',()=>b.classList.remove('scale-95'));
+  });
+</script>
+
+<!-- Mobile Drawer Menu -->
+<div id="mobile-drawer" class="fixed inset-0 z-[100] hidden md:hidden">
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="toggleMobileMenu()"></div>
+  <div class="absolute left-0 top-0 h-full w-72 z-10" style="background:rgba(10,10,10,0.98);border-right:1px solid rgba(255,255,255,0.08);">
+    <div class="flex items-center justify-between p-6 border-b border-white/5">
+      <span style="display:inline-flex;align-items:center;font-family:'Hanken Grotesk',sans-serif;font-size:20px;font-weight:800;color:#ffb59a;letter-spacing:-0.04em;"><svg width="26" height="26" viewBox="0 0 90 90" style="display:inline-block;vertical-align:middle;margin-right:7px;flex-shrink:0;"><polygon points="45,4 86,45 45,86 4,45" fill="#ff5c00"/><polygon points="45,14 76,45 45,76 14,45" fill="#c44a00"/><polygon points="45,26 64,45 45,64 26,45" fill="#000"/><line x1="33" y1="33" x2="57" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/><line x1="57" y1="33" x2="33" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/></svg>CryptoX</span>
+      <button onclick="toggleMobileMenu()" class="text-on-surface-variant hover:text-primary">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <nav class="p-4 space-y-1">
+      <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-primary bg-primary-container/15 font-label-mono text-sm"><span class="material-symbols-outlined text-sm">home</span> Home</a>
+      <a href="login.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 font-label-mono text-sm transition-colors"><span class="material-symbols-outlined text-sm">login</span> Sign In</a>
+      <a href="signup.html" class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 font-label-mono text-sm transition-colors"><span class="material-symbols-outlined text-sm">person_add</span> Create Account</a>
+    </nav>
+    <div class="p-4 mt-4">
+      <a href="signup.html" class="block w-full bg-primary-container text-on-primary-container text-center py-3 rounded-xl font-bold" style="text-decoration:none;">Get Started →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Bottom Nav (Landing Page) -->
+<div class="fixed bottom-0 left-0 right-0 md:hidden z-50" style="background:rgba(13,13,13,0.97);backdrop-filter:blur(24px);border-top:1px solid rgba(255,255,255,0.07);padding:8px 0 14px;">
+  <div style="display:flex;justify-content:space-around;align-items:center;">
+    <a href="index.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;">
+      <span class="material-symbols-outlined" style="font-size:22px;color:#ff5c00;font-variation-settings:'FILL' 1;">home</span>
+      <span style="font-family:'Geist',monospace;font-size:9px;color:#ff5c00;">Home</span>
+    </a>
+    <a href="#" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;">
+      <span class="material-symbols-outlined" style="font-size:22px;color:rgba(228,190,177,0.45);">info</span>
+      <span style="font-family:'Geist',monospace;font-size:9px;color:rgba(228,190,177,0.45);">About</span>
+    </a>
+    <a href="signup.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;">
+      <div style="width:46px;height:46px;border-radius:50%;background:#ff5c00;display:flex;align-items:center;justify-content:center;margin-top:-20px;box-shadow:0 0 20px rgba(255,92,0,0.5);">
+        <span class="material-symbols-outlined" style="font-size:22px;color:#fff;">rocket_launch</span>
+      </div>
+      <span style="font-family:'Geist',monospace;font-size:9px;color:rgba(228,190,177,0.45);">Start</span>
+    </a>
+    <a href="login.html" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;">
+      <span class="material-symbols-outlined" style="font-size:22px;color:rgba(228,190,177,0.45);">login</span>
+      <span style="font-family:'Geist',monospace;font-size:9px;color:rgba(228,190,177,0.45);">Sign In</span>
+    </a>
+    <a href="#" onclick="toggleMobileMenu()" style="display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;">
+      <span class="material-symbols-outlined" style="font-size:22px;color:rgba(228,190,177,0.45);">menu</span>
+      <span style="font-family:'Geist',monospace;font-size:9px;color:rgba(228,190,177,0.45);">Menu</span>
+    </a>
+  </div>
+</div>
+
+<script>
+function toggleMobileMenu(){
+  const d=document.getElementById('mobile-drawer');
+  d.classList.toggle('hidden');
+  document.body.style.overflow=d.classList.contains('hidden')?'':'hidden';
+}
+</script>
+
+</body>
+</html>

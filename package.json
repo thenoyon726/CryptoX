@@ -1,0 +1,8 @@
+{
+  "name": "cryptox-website",
+  "version": "1.0.0",
+  "description": "CryptoX - Pro Crypto Trading Platform",
+  "dependencies": {
+    "nodemailer": "^6.9.9"
+  }
+}
