@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin | CryptoX</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Geist:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;}
+  body{background:#000;color:#e5e2e1;font-family:'Inter',sans-serif;overflow-x:hidden;}
+  .glass{background:rgba(26,26,26,0.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+  input{outline:none;}
+  input:focus{border-color:#ff5c00!important;box-shadow:0 0 0 2px rgba(255,92,0,0.15);}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
+  .nav-item{display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:8px;cursor:pointer;font-family:'Geist',monospace;font-size:13px;color:rgba(228,190,177,0.6);transition:all 0.2s;text-decoration:none;}
+  .nav-item:hover{background:rgba(255,92,0,0.08);color:#ffb59a;}
+  .nav-item.active{background:rgba(255,92,0,0.15);color:#ffb59a;border-left:3px solid #ff5c00;}
+  .stat-card{background:rgba(26,26,26,0.5);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:20px;}
+  .badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;font-family:'Geist',monospace;}
+  .badge-green{background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.2);}
+  .badge-red{background:rgba(255,180,171,0.1);color:#ffb4ab;border:1px solid rgba(255,180,171,0.2);}
+  .badge-yellow{background:rgba(255,186,32,0.1);color:#ffba20;border:1px solid rgba(255,186,32,0.2);}
+  .badge-orange{background:rgba(255,92,0,0.1);color:#ff5c00;border:1px solid rgba(255,92,0,0.2);}
+  ::-webkit-scrollbar{width:4px;}
+  ::-webkit-scrollbar-thumb{background:rgba(255,92,0,0.3);border-radius:4px;}
+  tr:hover td{background:rgba(255,255,255,0.02);}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="login-screen" style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#000;position:relative;">
+  <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(circle at 50% 30%,rgba(255,92,0,0.1),transparent 70%);pointer-events:none;"></div>
+  <div style="width:100%;max-width:400px;padding:24px;position:relative;z-index:1;">
+    <!-- Logo -->
+    <div style="text-align:center;margin-bottom:32px;">
+      <svg width="52" height="52" viewBox="0 0 90 90" style="display:inline-block;filter:drop-shadow(0 0 16px rgba(255,92,0,0.5));margin-bottom:12px;">
+        <polygon points="45,4 86,45 45,86 4,45" fill="#ff5c00"/>
+        <polygon points="45,14 76,45 45,76 14,45" fill="#c44a00"/>
+        <polygon points="45,26 64,45 45,64 26,45" fill="#000"/>
+        <line x1="33" y1="33" x2="57" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/>
+        <line x1="57" y1="33" x2="33" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/>
+      </svg>
+      <div style="font-family:'Hanken Grotesk',sans-serif;font-size:22px;font-weight:900;color:#ffb59a;letter-spacing:-0.04em;">CryptoX Admin</div>
+      <div style="font-size:11px;color:rgba(228,190,177,0.4);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;">Restricted Access</div>
+    </div>
+
+    <div class="glass" style="border-radius:16px;padding:28px;">
+      <div style="margin-bottom:16px;">
+        <label style="display:block;font-family:'Geist',monospace;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Admin Username</label>
+        <input id="admin-user" type="text" placeholder="Enter username" style="width:100%;background:#0e0e0e;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:12px 16px;border-radius:10px;font-size:14px;"/>
+      </div>
+      <div style="margin-bottom:20px;">
+        <label style="display:block;font-family:'Geist',monospace;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Password</label>
+        <input id="admin-pass" type="password" placeholder="••••••••" style="width:100%;background:#0e0e0e;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:12px 16px;border-radius:10px;font-size:14px;"/>
+      </div>
+      <p id="login-error" style="color:#ffb4ab;font-size:12px;margin-bottom:12px;display:none;font-family:'Geist',monospace;">Invalid credentials. Try again.</p>
+      <button onclick="adminLogin()" style="width:100%;background:#ff5c00;color:#fff;font-family:'Geist',monospace;font-size:14px;font-weight:700;padding:13px;border-radius:10px;border:none;cursor:pointer;box-shadow:0 0 20px rgba(255,92,0,0.3);">
+        Access Admin Portal
+      </button>
+    </div>
+    <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.15);margin-top:16px;font-family:'Geist',monospace;">🔒 Unauthorized access is prohibited</p>
+  </div>
+</div>
+
+<!-- ===== ADMIN DASHBOARD ===== -->
+<div id="admin-panel" style="display:none;">
+  <div style="display:flex;min-height:100vh;">
+
+    <!-- Sidebar -->
+    <aside style="width:240px;background:rgba(10,10,10,0.98);border-right:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;padding:20px 12px;position:fixed;top:0;left:0;height:100vh;z-index:50;">
+      <div style="padding:4px 8px 20px;border-bottom:1px solid rgba(255,255,255,0.05);margin-bottom:12px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <svg width="26" height="26" viewBox="0 0 90 90">
+            <polygon points="45,4 86,45 45,86 4,45" fill="#ff5c00"/>
+            <polygon points="45,14 76,45 45,76 14,45" fill="#c44a00"/>
+            <polygon points="45,26 64,45 45,64 26,45" fill="#000"/>
+            <line x1="33" y1="33" x2="57" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/>
+            <line x1="57" y1="33" x2="33" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:800;color:#ffb59a;">CryptoX</div>
+            <div style="font-size:9px;color:rgba(228,190,177,0.4);text-transform:uppercase;letter-spacing:0.08em;">Admin Panel</div>
+          </div>
+        </div>
+      </div>
+
+      <nav style="flex:1;display:flex;flex-direction:column;gap:3px;">
+        <a class="nav-item active" onclick="showTab('dashboard')" href="#">
+          <span class="material-symbols-outlined" style="font-size:18px;">dashboard</span> Dashboard
+        </a>
+        <a class="nav-item" onclick="showTab('users')" href="#">
+          <span class="material-symbols-outlined" style="font-size:18px;">group</span> Users
+        </a>
+        <a class="nav-item" onclick="showTab('transactions')" href="#">
+          <span class="material-symbols-outlined" style="font-size:18px;">receipt_long</span> Transactions
+        </a>
+        <a class="nav-item" onclick="showTab('withdrawals')" href="#">
+          <span class="material-symbols-outlined" style="font-size:18px;">north_east</span> Withdrawals
+        </a>
+        <a class="nav-item" onclick="showTab('email')" href="#">
+          <span class="material-symbols-outlined" style="font-size:18px;">mail</span> Email Blast
+        </a>
+        <a class="nav-item" onclick="showTab('settings')" href="#">
+          <span class="material-symbols-outlined" style="font-size:18px;">settings</span> Settings
+        </a>
+      </nav>
+
+      <div style="border-top:1px solid rgba(255,255,255,0.05);padding-top:12px;margin-top:8px;">
+        <a href="index.html" class="nav-item" style="color:rgba(228,190,177,0.4);">
+          <span class="material-symbols-outlined" style="font-size:18px;">open_in_new</span> View Site
+        </a>
+        <a class="nav-item" onclick="adminLogout()" href="#" style="color:rgba(255,180,171,0.6);">
+          <span class="material-symbols-outlined" style="font-size:18px;">logout</span> Sign Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main style="margin-left:240px;flex:1;padding:28px;min-height:100vh;">
+
+      <!-- Top bar -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;">
+        <div>
+          <h1 id="page-title" style="font-family:'Hanken Grotesk',sans-serif;font-size:22px;font-weight:700;color:#e5e2e1;">Dashboard</h1>
+          <p style="font-size:12px;color:rgba(228,190,177,0.4);margin-top:2px;font-family:'Geist',monospace;">Welcome back, Admin</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px rgba(74,222,128,0.5);"></div>
+          <span style="font-size:12px;color:rgba(228,190,177,0.5);font-family:'Geist',monospace;">System Online</span>
+        </div>
+      </div>
+
+      <!-- ===== DASHBOARD TAB ===== -->
+      <div id="tab-dashboard" class="tab-content active">
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">
+          <div class="stat-card">
+            <div style="font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.08em;font-family:'Geist',monospace;margin-bottom:8px;">Total Users</div>
+            <div style="font-size:28px;font-weight:800;color:#e5e2e1;font-family:'Hanken Grotesk',sans-serif;">1,248</div>
+            <div style="font-size:11px;color:#4ade80;margin-top:4px;font-family:'Geist',monospace;">↑ +24 this week</div>
+          </div>
+          <div class="stat-card">
+            <div style="font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.08em;font-family:'Geist',monospace;margin-bottom:8px;">Total Deposits</div>
+            <div style="font-size:28px;font-weight:800;color:#ff5c00;font-family:'Hanken Grotesk',sans-serif;">$842K</div>
+            <div style="font-size:11px;color:#4ade80;margin-top:4px;font-family:'Geist',monospace;">↑ +$12K today</div>
+          </div>
+          <div class="stat-card">
+            <div style="font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.08em;font-family:'Geist',monospace;margin-bottom:8px;">Pending Withdrawals</div>
+            <div style="font-size:28px;font-weight:800;color:#ffba20;font-family:'Hanken Grotesk',sans-serif;">7</div>
+            <div style="font-size:11px;color:#ffba20;margin-top:4px;font-family:'Geist',monospace;">Needs review</div>
+          </div>
+          <div class="stat-card">
+            <div style="font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.08em;font-family:'Geist',monospace;margin-bottom:8px;">Active Today</div>
+            <div style="font-size:28px;font-weight:800;color:#e5e2e1;font-family:'Hanken Grotesk',sans-serif;">342</div>
+            <div style="font-size:11px;color:#4ade80;margin-top:4px;font-family:'Geist',monospace;">↑ +8% vs yesterday</div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div class="glass" style="border-radius:12px;padding:20px;">
+            <div style="font-size:14px;font-weight:600;color:#e5e2e1;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
+              Recent Signups
+              <span class="badge badge-orange">Live</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,92,0,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#ff5c00;">AV</div>
+                  <div><div style="font-size:13px;color:#e5e2e1;">Alexander Vance</div><div style="font-size:11px;color:rgba(228,190,177,0.4);">a.vance@crypto.com</div></div>
+                </div>
+                <span class="badge badge-green">Active</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:rgba(98,126,234,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#627eea;">JD</div>
+                  <div><div style="font-size:13px;color:#e5e2e1;">John Doe</div><div style="font-size:11px;color:rgba(228,190,177,0.4);">john.d@trader.io</div></div>
+                </div>
+                <span class="badge badge-green">Active</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:rgba(74,222,128,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#4ade80;">MS</div>
+                  <div><div style="font-size:13px;color:#e5e2e1;">Marcus S.</div><div style="font-size:11px;color:rgba(228,190,177,0.4);">marcus@obsidian.com</div></div>
+                </div>
+                <span class="badge badge-yellow">Pending KYC</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass" style="border-radius:12px;padding:20px;">
+            <div style="font-size:14px;font-weight:600;color:#e5e2e1;margin-bottom:16px;">Recent Transactions</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div><div style="font-size:12px;color:#e5e2e1;">Deposit BTC</div><div style="font-size:11px;color:rgba(228,190,177,0.4);">2 mins ago</div></div>
+                <span style="font-size:13px;font-weight:700;color:#4ade80;">+$29,130</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.04);">
+                <div><div style="font-size:12px;color:#e5e2e1;">Withdraw ETH</div><div style="font-size:11px;color:rgba(228,190,177,0.4);">15 mins ago</div></div>
+                <span style="font-size:13px;font-weight:700;color:#ffba20;">Pending</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div><div style="font-size:12px;color:#e5e2e1;">Transfer USDT</div><div style="font-size:11px;color:rgba(228,190,177,0.4);">1 hour ago</div></div>
+                <span style="font-size:13px;font-weight:700;color:#ff5c00;">$5,000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== USERS TAB ===== -->
+      <div id="tab-users" class="tab-content">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+          <div style="display:flex;gap:8px;">
+            <input type="text" placeholder="Search users..." style="background:#111;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:8px 14px;border-radius:8px;font-size:13px;width:220px;"/>
+            <select style="background:#111;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:8px 14px;border-radius:8px;font-size:13px;">
+              <option>All Users</option>
+              <option>Active</option>
+              <option>Blocked</option>
+              <option>Pending KYC</option>
+            </select>
+          </div>
+          <span style="font-size:12px;color:rgba(228,190,177,0.4);font-family:'Geist',monospace;">Total: 1,248 users</span>
+        </div>
+
+        <div class="glass" style="border-radius:12px;overflow:hidden;">
+          <table style="width:100%;border-collapse:collapse;">
+            <thead>
+              <tr style="background:rgba(20,20,20,0.8);">
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">User</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Email</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Joined</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Status</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Balance</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Action</th>
+              </tr>
+            </thead>
+            <tbody id="users-table">
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:12px 16px;"><div style="display:flex;align-items:center;gap:8px;"><div style="width:30px;height:30px;border-radius:50%;background:rgba(255,92,0,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#ff5c00;">AV</div><span style="font-size:13px;color:#e5e2e1;">Alexander Vance</span></div></td>
+                <td style="padding:12px 16px;font-size:12px;color:rgba(228,190,177,0.6);">a.vance@crypto.com</td>
+                <td style="padding:12px 16px;font-size:12px;color:rgba(228,190,177,0.5);font-family:'Geist',monospace;">Oct 2022</td>
+                <td style="padding:12px 16px;"><span class="badge badge-green">Active</span></td>
+                <td style="padding:12px 16px;font-size:13px;color:#e5e2e1;font-family:'Geist',monospace;">$452,892</td>
+                <td style="padding:12px 16px;">
+                  <div style="display:flex;gap:6px;">
+                    <button onclick="viewUser('Alexander Vance')" style="background:rgba(255,92,0,0.1);color:#ff5c00;border:1px solid rgba(255,92,0,0.2);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Geist',monospace;">View</button>
+                    <button onclick="blockUser(this)" style="background:rgba(255,180,171,0.1);color:#ffb4ab;border:1px solid rgba(255,180,171,0.2);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Geist',monospace;">Block</button>
+                  </div>
+                </td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:12px 16px;"><div style="display:flex;align-items:center;gap:8px;"><div style="width:30px;height:30px;border-radius:50%;background:rgba(98,126,234,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#627eea;">JD</div><span style="font-size:13px;color:#e5e2e1;">John Doe</span></div></td>
+                <td style="padding:12px 16px;font-size:12px;color:rgba(228,190,177,0.6);">john.d@trader.io</td>
+                <td style="padding:12px 16px;font-size:12px;color:rgba(228,190,177,0.5);font-family:'Geist',monospace;">Nov 2023</td>
+                <td style="padding:12px 16px;"><span class="badge badge-green">Active</span></td>
+                <td style="padding:12px 16px;font-size:13px;color:#e5e2e1;font-family:'Geist',monospace;">$28,450</td>
+                <td style="padding:12px 16px;">
+                  <div style="display:flex;gap:6px;">
+                    <button onclick="viewUser('John Doe')" style="background:rgba(255,92,0,0.1);color:#ff5c00;border:1px solid rgba(255,92,0,0.2);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Geist',monospace;">View</button>
+                    <button onclick="blockUser(this)" style="background:rgba(255,180,171,0.1);color:#ffb4ab;border:1px solid rgba(255,180,171,0.2);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Geist',monospace;">Block</button>
+                  </div>
+                </td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:12px 16px;"><div style="display:flex;align-items:center;gap:8px;"><div style="width:30px;height:30px;border-radius:50%;background:rgba(255,186,32,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#ffba20;">MS</div><span style="font-size:13px;color:#e5e2e1;">Marcus S.</span></div></td>
+                <td style="padding:12px 16px;font-size:12px;color:rgba(228,190,177,0.6);">marcus@obsidian.com</td>
+                <td style="padding:12px 16px;font-size:12px;color:rgba(228,190,177,0.5);font-family:'Geist',monospace;">Jan 2024</td>
+                <td style="padding:12px 16px;"><span class="badge badge-yellow">Pending KYC</span></td>
+                <td style="padding:12px 16px;font-size:13px;color:#e5e2e1;font-family:'Geist',monospace;">$4,200</td>
+                <td style="padding:12px 16px;">
+                  <div style="display:flex;gap:6px;">
+                    <button onclick="approveKYC(this)" style="background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.2);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Geist',monospace;">Approve KYC</button>
+                    <button onclick="blockUser(this)" style="background:rgba(255,180,171,0.1);color:#ffb4ab;border:1px solid rgba(255,180,171,0.2);padding:4px 10px;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Geist',monospace;">Block</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== TRANSACTIONS TAB ===== -->
+      <div id="tab-transactions" class="tab-content">
+        <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+          <select style="background:#111;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:8px 14px;border-radius:8px;font-size:13px;">
+            <option>All Types</option>
+            <option>Deposits</option>
+            <option>Withdrawals</option>
+            <option>Transfers</option>
+          </select>
+          <select style="background:#111;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:8px 14px;border-radius:8px;font-size:13px;">
+            <option>All Status</option>
+            <option>Completed</option>
+            <option>Pending</option>
+            <option>Failed</option>
+          </select>
+          <input type="date" style="background:#111;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:8px 14px;border-radius:8px;font-size:13px;"/>
+        </div>
+
+        <div class="glass" style="border-radius:12px;overflow:hidden;">
+          <table style="width:100%;border-collapse:collapse;">
+            <thead>
+              <tr style="background:rgba(20,20,20,0.8);">
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">ID</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">User</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Type</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Amount</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Status</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:12px 16px;font-size:11px;color:rgba(228,190,177,0.4);font-family:'Geist',monospace;">#TXN001</td><td style="padding:12px 16px;font-size:13px;color:#e5e2e1;">Alexander V.</td><td style="padding:12px 16px;"><span class="badge badge-green">Deposit</span></td><td style="padding:12px 16px;font-size:13px;color:#4ade80;font-family:'Geist',monospace;">+$29,130</td><td style="padding:12px 16px;"><span class="badge badge-green">Completed</span></td><td style="padding:12px 16px;font-size:11px;color:rgba(228,190,177,0.4);font-family:'Geist',monospace;">Oct 24, 14:22</td></tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:12px 16px;font-size:11px;color:rgba(228,190,177,0.4);font-family:'Geist',monospace;">#TXN002</td><td style="padding:12px 16px;font-size:13px;color:#e5e2e1;">John Doe</td><td style="padding:12px 16px;"><span class="badge badge-red">Withdraw</span></td><td style="padding:12px 16px;font-size:13px;color:#ffb4ab;font-family:'Geist',monospace;">-$7,714</td><td style="padding:12px 16px;"><span class="badge badge-yellow">Pending</span></td><td style="padding:12px 16px;font-size:11px;color:rgba(228,190,177,0.4);font-family:'Geist',monospace;">Oct 23, 09:10</td></tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);"><td style="padding:12px 16px;font-size:11px;color:rgba(228,190,177,0.4);font-family:'Geist',monospace;">#TXN003</td><td style="padding:12px 16px;font-size:13px;color:#e5e2e1;">Marcus S.</td><td style="padding:12px 16px;"><span class="badge badge-orange">Transfer</span></td><td style="padding:12px 16px;font-size:13px;color:#ff5c00;font-family:'Geist',monospace;">$5,000</td><td style="padding:12px 16px;"><span class="badge badge-green">Completed</span></td><td style="padding:12px 16px;font-size:11px;color:rgba(228,190,177,0.4);font-family:'Geist',monospace;">Oct 21, 18:44</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== WITHDRAWALS TAB ===== -->
+      <div id="tab-withdrawals" class="tab-content">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+          <span class="badge badge-yellow" style="font-size:12px;padding:4px 10px;">7 Pending Approval</span>
+        </div>
+        <div class="glass" style="border-radius:12px;overflow:hidden;">
+          <table style="width:100%;border-collapse:collapse;">
+            <thead>
+              <tr style="background:rgba(20,20,20,0.8);">
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">User</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Asset</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Amount</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Address</th>
+                <th style="padding:12px 16px;text-align:left;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.06em;font-family:'Geist',monospace;font-weight:500;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:12px 16px;font-size:13px;color:#e5e2e1;">John Doe</td>
+                <td style="padding:12px 16px;"><span class="badge badge-orange">BTC</span></td>
+                <td style="padding:12px 16px;font-size:13px;color:#ffb4ab;font-family:'Geist',monospace;">0.1200 BTC</td>
+                <td style="padding:12px 16px;font-size:11px;color:rgba(228,190,177,0.4);font-family:'Geist',monospace;">bc1qxy2...8ca</td>
+                <td style="padding:12px 16px;">
+                  <div style="display:flex;gap:6px;">
+                    <button onclick="approveWithdrawal(this)" style="background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.2);padding:5px 12px;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Geist',monospace;font-weight:700;">Approve</button>
+                    <button onclick="rejectWithdrawal(this)" style="background:rgba(255,180,171,0.1);color:#ffb4ab;border:1px solid rgba(255,180,171,0.2);padding:5px 12px;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Geist',monospace;font-weight:700;">Reject</button>
+                  </div>
+                </td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:12px 16px;font-size:13px;color:#e5e2e1;">Marcus S.</td>
+                <td style="padding:12px 16px;"><span class="badge" style="background:rgba(98,126,234,0.1);color:#627eea;border:1px solid rgba(98,126,234,0.2);">ETH</span></td>
+                <td style="padding:12px 16px;font-size:13px;color:#ffb4ab;font-family:'Geist',monospace;">1.5 ETH</td>
+                <td style="padding:12px 16px;font-size:11px;color:rgba(228,190,177,0.4);font-family:'Geist',monospace;">0x71C...3921</td>
+                <td style="padding:12px 16px;">
+                  <div style="display:flex;gap:6px;">
+                    <button onclick="approveWithdrawal(this)" style="background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.2);padding:5px 12px;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Geist',monospace;font-weight:700;">Approve</button>
+                    <button onclick="rejectWithdrawal(this)" style="background:rgba(255,180,171,0.1);color:#ffb4ab;border:1px solid rgba(255,180,171,0.2);padding:5px 12px;border-radius:5px;font-size:11px;cursor:pointer;font-family:'Geist',monospace;font-weight:700;">Reject</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== EMAIL BLAST TAB ===== -->
+      <div id="tab-email" class="tab-content">
+        <div style="max-width:640px;">
+          <div class="glass" style="border-radius:12px;padding:24px;">
+            <h3 style="font-size:16px;font-weight:600;color:#e5e2e1;margin-bottom:20px;">Send Email to Users</h3>
+            <div style="margin-bottom:14px;">
+              <label style="display:block;font-family:'Geist',monospace;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Recipients</label>
+              <select style="width:100%;background:#0e0e0e;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:10px 14px;border-radius:8px;font-size:13px;">
+                <option>All Users (1,248)</option>
+                <option>Active Users Only</option>
+                <option>New Users (last 7 days)</option>
+                <option>Pending KYC Users</option>
+              </select>
+            </div>
+            <div style="margin-bottom:14px;">
+              <label style="display:block;font-family:'Geist',monospace;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Subject</label>
+              <input type="text" placeholder="Email subject..." style="width:100%;background:#0e0e0e;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:10px 14px;border-radius:8px;font-size:13px;"/>
+            </div>
+            <div style="margin-bottom:20px;">
+              <label style="display:block;font-family:'Geist',monospace;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Message</label>
+              <textarea placeholder="Write your message here..." rows="6" style="width:100%;background:#0e0e0e;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:10px 14px;border-radius:8px;font-size:13px;resize:vertical;font-family:'Inter',sans-serif;"></textarea>
+            </div>
+            <div style="display:flex;gap:10px;">
+              <button onclick="sendBlastEmail()" style="background:#ff5c00;color:#fff;font-family:'Geist',monospace;font-size:13px;font-weight:700;padding:11px 24px;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;">
+                <span class="material-symbols-outlined" style="font-size:16px;">send</span> Send Email
+              </button>
+              <button style="background:transparent;color:rgba(228,190,177,0.5);font-family:'Geist',monospace;font-size:13px;padding:11px 20px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);cursor:pointer;">Preview</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SETTINGS TAB ===== -->
+      <div id="tab-settings" class="tab-content">
+        <div style="max-width:600px;display:flex;flex-direction:column;gap:16px;">
+
+          <div class="glass" style="border-radius:12px;padding:20px;">
+            <h3 style="font-size:15px;font-weight:600;color:#e5e2e1;margin-bottom:16px;">Site Control</h3>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <div><div style="font-size:13px;color:#e5e2e1;">Maintenance Mode</div><div style="font-size:11px;color:rgba(228,190,177,0.4);margin-top:2px;">Take site offline for updates</div></div>
+              <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;">
+                <input type="checkbox" id="maintenance" style="opacity:0;width:0;height:0;" onchange="toggleMaintenance(this)">
+                <span style="position:absolute;top:0;left:0;right:0;bottom:0;background:#333;border-radius:24px;transition:0.3s;" id="maint-slider"></span>
+                <span style="position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:0.3s;" id="maint-thumb"></span>
+              </label>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <div><div style="font-size:13px;color:#e5e2e1;">New Registrations</div><div style="font-size:11px;color:rgba(228,190,177,0.4);margin-top:2px;">Allow new users to sign up</div></div>
+              <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;">
+                <input type="checkbox" checked style="opacity:0;width:0;height:0;">
+                <span style="position:absolute;top:0;left:0;right:0;bottom:0;background:#ff5c00;border-radius:24px;transition:0.3s;"></span>
+                <span style="position:absolute;top:3px;right:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:0.3s;"></span>
+              </label>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;">
+              <div><div style="font-size:13px;color:#e5e2e1;">Withdrawal Processing</div><div style="font-size:11px;color:rgba(228,190,177,0.4);margin-top:2px;">Allow withdrawal requests</div></div>
+              <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;">
+                <input type="checkbox" checked style="opacity:0;width:0;height:0;">
+                <span style="position:absolute;top:0;left:0;right:0;bottom:0;background:#ff5c00;border-radius:24px;transition:0.3s;"></span>
+                <span style="position:absolute;top:3px;right:3px;width:18px;height:18px;background:#fff;border-radius:50%;transition:0.3s;"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="glass" style="border-radius:12px;padding:20px;">
+            <h3 style="font-size:15px;font-weight:600;color:#e5e2e1;margin-bottom:16px;">Change Admin Password</h3>
+            <div style="margin-bottom:12px;">
+              <label style="display:block;font-family:'Geist',monospace;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Current Password</label>
+              <input type="password" placeholder="••••••••" style="width:100%;background:#0e0e0e;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:10px 14px;border-radius:8px;font-size:13px;"/>
+            </div>
+            <div style="margin-bottom:12px;">
+              <label style="display:block;font-family:'Geist',monospace;font-size:11px;color:rgba(228,190,177,0.5);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">New Password</label>
+              <input type="password" placeholder="••••••••" style="width:100%;background:#0e0e0e;border:1px solid rgba(255,255,255,0.08);color:#e5e2e1;padding:10px 14px;border-radius:8px;font-size:13px;"/>
+            </div>
+            <button onclick="alert('Password updated!')" style="background:#ff5c00;color:#fff;font-family:'Geist',monospace;font-size:13px;font-weight:700;padding:10px 20px;border-radius:8px;border:none;cursor:pointer;">Update Password</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  // ===== Admin credentials (change these!) =====
+  const ADMIN_USER = 'admin';
+  const ADMIN_PASS = 'CryptoX@Admin2025';
+
+  function adminLogin() {
+    const user = document.getElementById('admin-user').value.trim();
+    const pass = document.getElementById('admin-pass').value;
+    const err  = document.getElementById('login-error');
+
+    if (user === ADMIN_USER && pass === ADMIN_PASS) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-panel').style.display  = 'block';
+      sessionStorage.setItem('cryptox_admin', '1');
+    } else {
+      err.style.display = 'block';
+      document.getElementById('admin-user').style.borderColor = '#ffb4ab';
+      document.getElementById('admin-pass').style.borderColor = '#ffb4ab';
+      setTimeout(() => {
+        document.getElementById('admin-user').style.borderColor = '';
+        document.getElementById('admin-pass').style.borderColor = '';
+      }, 2000);
+    }
+  }
+
+  function adminLogout() {
+    sessionStorage.removeItem('cryptox_admin');
+    document.getElementById('admin-panel').style.display  = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('admin-user').value = '';
+    document.getElementById('admin-pass').value = '';
+  }
+
+  // Auto-login if session exists
+  if (sessionStorage.getItem('cryptox_admin')) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-panel').style.display  = 'block';
+  }
+
+  // Allow Enter key on login
+  document.getElementById('admin-pass').addEventListener('keydown', e => {
+    if (e.key === 'Enter') adminLogin();
+  });
+
+  function showTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.currentTarget.classList.add('active');
+    const titles = {dashboard:'Dashboard',users:'User Management',transactions:'Transactions',withdrawals:'Pending Withdrawals',email:'Email Blast',settings:'Settings'};
+    document.getElementById('page-title').textContent = titles[tab] || tab;
+  }
+
+  function blockUser(btn) {
+    const isBlocked = btn.textContent === 'Unblock';
+    btn.textContent = isBlocked ? 'Block' : 'Unblock';
+    btn.style.background = isBlocked ? 'rgba(255,180,171,0.1)' : 'rgba(74,222,128,0.1)';
+    btn.style.color = isBlocked ? '#ffb4ab' : '#4ade80';
+    btn.style.borderColor = isBlocked ? 'rgba(255,180,171,0.2)' : 'rgba(74,222,128,0.2)';
+    const row = btn.closest('tr');
+    const badge = row.querySelector('.badge');
+    if (badge && (badge.classList.contains('badge-green') || badge.classList.contains('badge-red'))) {
+      badge.textContent = isBlocked ? 'Active' : 'Blocked';
+      badge.className = 'badge ' + (isBlocked ? 'badge-green' : 'badge-red');
+    }
+  }
+
+  function approveKYC(btn) {
+    const row = btn.closest('tr');
+    const badge = row.querySelector('.badge');
+    badge.textContent = 'Active';
+    badge.className = 'badge badge-green';
+    btn.textContent = 'Approved ✓';
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+  }
+
+  function approveWithdrawal(btn) {
+    const row = btn.closest('tr');
+    btn.textContent = 'Approved ✓';
+    btn.style.background = 'rgba(74,222,128,0.2)';
+    btn.disabled = true;
+    row.querySelector('button:last-child').style.display = 'none';
+  }
+
+  function rejectWithdrawal(btn) {
+    const row = btn.closest('tr');
+    btn.textContent = 'Rejected';
+    btn.style.background = 'rgba(255,180,171,0.2)';
+    btn.disabled = true;
+    row.querySelector('button:first-child').style.display = 'none';
+  }
+
+  function viewUser(name) {
+    alert(`User Details: ${name}\n\nThis would show full user profile, transaction history, and account details.`);
+  }
+
+  function sendBlastEmail() {
+    alert('Email sent successfully to selected users!');
+  }
+
+  function toggleMaintenance(checkbox) {
+    const slider = document.getElementById('maint-slider');
+    const thumb  = document.getElementById('maint-thumb');
+    if (checkbox.checked) {
+      slider.style.background = '#ff5c00';
+      thumb.style.left = 'auto';
+      thumb.style.right = '3px';
+      alert('⚠️ Maintenance mode ON — Site is now offline for users.');
+    } else {
+      slider.style.background = '#333';
+      thumb.style.right = 'auto';
+      thumb.style.left = '3px';
+    }
+  }
+</script>
+</body>
+</html>
