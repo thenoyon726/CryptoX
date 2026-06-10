@@ -14,7 +14,29 @@
   .chart-glow{filter:drop-shadow(0 0 8px rgba(255,92,0,0.4));}
   body{background-color:#000;color:#e5e2e1;overflow-x:hidden;}
   .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
-</style>
+
+    /* Fix white input background */
+    input, select, textarea {
+      background-color: #0e0e0e !important;
+      color: #e5e2e1 !important;
+      -webkit-text-fill-color: #e5e2e1 !important;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0px 1000px #0e0e0e inset !important;
+      -webkit-text-fill-color: #e5e2e1 !important;
+      caret-color: #e5e2e1 !important;
+    }
+    input::placeholder, textarea::placeholder { 
+      color: rgba(228,190,177,0.35) !important; 
+    }
+    select option {
+      background: #0e0e0e;
+      color: #e5e2e1;
+    }
+
+    </style>
 <script id="tailwind-config">
   tailwind.config={darkMode:"class",theme:{extend:{colors:{"secondary-container":"#feb700","primary":"#ffb59a","surface-container-lowest":"#0e0e0e","on-surface-variant":"#e4beb1","background":"#131313","secondary":"#ffdb9d","primary-container":"#ff5c00","error":"#ffb4ab","error-container":"#93000a","surface-container":"#201f1f","outline":"#ab897d","surface-container-low":"#1c1b1b","surface-bright":"#3a3939","on-surface":"#e5e2e1","on-background":"#e5e2e1","on-primary-container":"#521800","surface-container-high":"#2a2a2a","outline-variant":"#5b4137","surface-variant":"#353534","on-primary":"#5a1b00","on-secondary":"#412d00"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"margin-mobile":"20px","stack-md":"16px","gutter":"24px","container-max":"1440px","unit":"4px","margin-desktop":"80px","stack-sm":"8px","stack-lg":"32px"},fontFamily:{"title-md":["Hanken Grotesk"],"headline-xl":["Hanken Grotesk"],"body-md":["Inter"],"headline-lg-mobile":["Hanken Grotesk"],"label-mono":["Geist"],"headline-lg":["Hanken Grotesk"],"data-display":["Geist"],"body-lg":["Inter"]},fontSize:{"title-md":["24px",{lineHeight:"32px",fontWeight:"500"}],"headline-xl":["64px",{lineHeight:"72px",letterSpacing:"-0.04em",fontWeight:"700"}],"body-md":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-lg-mobile":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"label-mono":["14px",{lineHeight:"20px",letterSpacing:"0.05em",fontWeight:"500"}],"headline-lg":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"600"}],"data-display":["20px",{lineHeight:"24px",fontWeight:"600"}],"body-lg":["18px",{lineHeight:"28px",fontWeight:"400"}]}}}}
 </script>
@@ -25,8 +47,8 @@
 <div class="fixed top-0 right-0 w-[800px] h-[800px] amber-glow-bg pointer-events-none z-0"></div>
 <header class="relative z-10 flex justify-between items-center mb-stack-lg">
 <div>
-<h2 class="font-title-md text-title-md text-on-surface">Welcome back, Alex</h2>
-<p class="font-body-md text-body-md text-on-surface-variant/70">Markets are 1.2% up in the last 24 hours.</p>
+<h2 class="font-title-md text-title-md text-on-surface">Welcome to CryptoX!</h2>
+<p class="font-body-md text-body-md text-on-surface-variant/70">Start your crypto journey by making a deposit.</p>
 </div>
 <div class="flex items-center gap-4">
 <button class="glass-panel p-2 rounded-full text-on-surface-variant hover:text-primary transition-colors">
@@ -34,7 +56,7 @@
 </button>
 <div class="flex items-center gap-3 glass-panel pr-4 pl-1 py-1 rounded-full">
 <div class="w-8 h-8 rounded-full border border-primary/30 bg-primary-container/20 flex items-center justify-center font-bold text-primary-container text-sm">AV</div>
-<span class="font-label-mono text-label-mono text-on-surface">0x71...4F9E</span>
+<span class="font-label-mono text-label-mono text-on-surface">New User</span>
 </div>
 </div>
 </header>
@@ -46,18 +68,18 @@
 <span class="material-symbols-outlined text-primary group-hover:rotate-45 transition-transform">arrow_outward</span>
 </div>
 <div class="space-y-1">
-<p class="font-headline-lg text-headline-lg amber-glow-text">$452,892.<span class="opacity-50 text-2xl">45</span></p>
+<p class="font-headline-lg text-headline-lg amber-glow-text">$0.<span class="opacity-50 text-2xl">00</span></p>
 <div class="flex items-center gap-2">
 <span class="bg-primary/20 text-primary-container px-2 py-0.5 rounded text-xs font-label-mono flex items-center gap-1">
-<span class="material-symbols-outlined text-sm">trending_up</span>+12.4%</span>
-<span class="font-label-mono text-label-mono text-on-surface-variant/40">vs last month</span>
+<span class="material-symbols-outlined text-sm">trending_up</span>0.0%</span>
+<span class="font-label-mono text-label-mono text-on-surface-variant/40"></span>
 </div>
 </div>
 </div>
 <div class="mt-stack-lg pt-stack-md border-t border-outline-variant/10 relative z-10">
 <div class="flex justify-between items-center text-on-surface-variant/70">
 <span class="font-label-mono text-label-mono">P/L (24h)</span>
-<span class="font-label-mono text-label-mono text-primary">+$5,231.00</span>
+<span class="font-label-mono text-label-mono text-primary">$0.00</span>
 </div>
 </div>
 <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/10 blur-[60px] rounded-full group-hover:scale-150 transition-transform duration-700"></div>
@@ -101,27 +123,12 @@
 <a href="assets.html" class="text-primary font-label-mono text-xs hover:underline">View All Assets</a>
 </div>
 <div class="grid grid-cols-1 gap-4">
-<a href="assets.html" class="glass-panel p-4 rounded-xl flex items-center justify-between group hover:border-primary/30 transition-all cursor-pointer">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold" style="background:#f7931a;">₿</div>
-<div><h4 class="font-label-mono text-label-mono">Bitcoin</h4><p class="text-[10px] text-on-surface-variant/60 font-label-mono">0.452 BTC</p></div>
+<div class="glass-panel p-8 rounded-xl flex flex-col items-center justify-center text-center" style="min-height:180px;">
+  <span class="material-symbols-outlined text-on-surface-variant/30 text-5xl mb-3">account_balance_wallet</span>
+  <p class="font-label-mono text-sm text-on-surface-variant/50">No assets yet</p>
+  <p class="text-xs text-on-surface-variant/30 mt-1 mb-4">Make your first deposit to get started</p>
+  <a href="deposit.html" class="bg-primary-container text-on-primary-container px-5 py-2 rounded-full font-label-mono text-xs hover:opacity-90 transition">+ Deposit Now</a>
 </div>
-<div class="text-right"><p class="font-label-mono text-label-mono">$29,152.40</p><p class="text-[10px] text-primary font-label-mono">+2.4%</p></div>
-</a>
-<a href="assets.html" class="glass-panel p-4 rounded-xl flex items-center justify-between group hover:border-primary/30 transition-all cursor-pointer">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold" style="background:#627eea;">Ξ</div>
-<div><h4 class="font-label-mono text-label-mono">Ethereum</h4><p class="text-[10px] text-on-surface-variant/60 font-label-mono">12.84 ETH</p></div>
-</div>
-<div class="text-right"><p class="font-label-mono text-label-mono">$43,120.00</p><p class="text-[10px] text-primary font-label-mono">+1.2%</p></div>
-</a>
-<a href="assets.html" class="glass-panel p-4 rounded-xl flex items-center justify-between group hover:border-primary/30 transition-all cursor-pointer">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold" style="background:#26a17b;">$</div>
-<div><h4 class="font-label-mono text-label-mono">Tether</h4><p class="text-[10px] text-on-surface-variant/60 font-label-mono">15,000 USDT</p></div>
-</div>
-<div class="text-right"><p class="font-label-mono text-label-mono">$15,000.00</p><p class="text-[10px] text-on-surface-variant/40 font-label-mono">0.0%</p></div>
-</a>
 </div>
 </section>
 <section class="md:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-gutter">
@@ -131,26 +138,10 @@
 <a href="transactions.html"><span class="material-symbols-outlined text-on-surface-variant/40 text-sm hover:text-primary transition-colors">history</span></a>
 </div>
 <div class="space-y-4 flex-grow custom-scrollbar overflow-y-auto pr-2 max-h-60">
-<div class="flex items-center justify-between border-b border-outline-variant/5 pb-3">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary text-sm">download</span></div>
-<div><p class="font-label-mono text-[12px]">Received BTC</p><p class="text-[10px] text-on-surface-variant/40">Aug 24, 2:14 PM</p></div>
-</div>
-<p class="font-label-mono text-[12px] text-primary">+0.0042 BTC</p>
-</div>
-<div class="flex items-center justify-between border-b border-outline-variant/5 pb-3">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-surface-variant/30 flex items-center justify-center"><span class="material-symbols-outlined text-on-surface-variant text-sm">sync_alt</span></div>
-<div><p class="font-label-mono text-[12px]">Swap ETH/USDT</p><p class="text-[10px] text-on-surface-variant/40">Aug 23, 11:05 AM</p></div>
-</div>
-<p class="font-label-mono text-[12px]">-1.5 ETH</p>
-</div>
-<div class="flex items-center justify-between pb-3">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-error-container/20 flex items-center justify-center"><span class="material-symbols-outlined text-error text-sm">upload</span></div>
-<div><p class="font-label-mono text-[12px]">Withdrawn USD</p><p class="text-[10px] text-on-surface-variant/40">Aug 22, 9:20 PM</p></div>
-</div>
-<p class="font-label-mono text-[12px] text-error">-$2,000.00</p>
+<div class="flex flex-col items-center justify-center py-8 text-center">
+  <span class="material-symbols-outlined text-on-surface-variant/30 text-4xl mb-2">receipt_long</span>
+  <p class="font-label-mono text-sm text-on-surface-variant/50">No transactions yet</p>
+  <p class="text-xs text-on-surface-variant/30 mt-1">Your activity will appear here</p>
 </div>
 </div>
 <a href="transactions.html" class="mt-4 text-center text-xs text-primary font-label-mono hover:underline">View All Transactions →</a>
@@ -176,16 +167,7 @@
 </div>
 </section>
 </div>
-<footer class="mt-stack-lg relative z-10 w-full glass-panel py-stack-lg rounded-xl overflow-hidden">
-<div class="flex flex-col md:flex-row justify-between items-center px-10 gap-stack-md">
-<div><h4 class="font-title-md text-title-md text-primary" style="display:flex;align-items:center;"><svg width="26" height="26" viewBox="0 0 90 90" style="display:inline-block;vertical-align:middle;margin-right:7px;flex-shrink:0;"><polygon points="45,4 86,45 45,86 4,45" fill="#ff5c00"/><polygon points="45,14 76,45 45,76 14,45" fill="#c44a00"/><polygon points="45,26 64,45 45,64 26,45" fill="#000"/><line x1="33" y1="33" x2="57" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/><line x1="57" y1="33" x2="33" y2="57" stroke="#ff5c00" stroke-width="5.5" stroke-linecap="round"/></svg>CryptoX</h4><p class="font-body-md text-body-md text-on-surface-variant/60 mt-1">© 2025 CryptoX. All Rights Reserved.</p></div>
-<div class="flex gap-6">
-<a class="text-on-surface-variant font-label-mono text-xs hover:text-primary transition-colors" href="#">Privacy</a>
-<a class="text-on-surface-variant font-label-mono text-xs hover:text-primary transition-colors" href="#">Terms</a>
-<a class="text-on-surface-variant font-label-mono text-xs hover:text-primary transition-colors" href="#">Security</a>
-</div>
-</div>
-</footer>
+
 </main>
 <script src="_sidebar.js"></script>
 <script>
